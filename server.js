@@ -4,13 +4,10 @@ const { SESClient, SendEmailCommand } = require('@aws-sdk/client-ses');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Configure AWS SES client
+// Configure AWS SES client - uses EC2 instance role credentials automatically
 const sesClient = new SESClient({
   region: process.env.AWS_REGION || 'eu-west-1',
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  },
+  // No credentials needed - will use EC2 instance IAM role
 });
 
 app.use(express.static('public'));

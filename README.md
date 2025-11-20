@@ -20,11 +20,11 @@ Simple Node.js web application to test sending emails from `info@cyf.academy` us
 Set these in Coolify when deploying:
 
 ```
-AWS_ACCESS_KEY_ID=your_access_key_id
-AWS_SECRET_ACCESS_KEY=your_secret_access_key
 AWS_REGION=eu-west-1
 PORT=3000
 ```
+
+**Note:** AWS credentials are NOT needed! The application uses the EC2 instance IAM role (`hosting_role`) which already has SES permissions.
 
 ## Local Development
 
@@ -33,7 +33,7 @@ PORT=3000
    npm install
    ```
 
-2. Set environment variables:
+2. Set environment variables (local development only - not needed in Coolify):
    ```bash
    export AWS_ACCESS_KEY_ID=your_key
    export AWS_SECRET_ACCESS_KEY=your_secret
