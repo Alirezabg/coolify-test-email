@@ -12,8 +12,8 @@ Simple Node.js web application to test sending emails from `info@cyf.academy` us
 ## Prerequisites
 
 - Node.js 18+ (for local development)
-- AWS SES credentials with permission to send from `cyf.academy`
-- Domain `cyf.academy` verified in AWS SES
+- Coolify deployment on EC2 instance with `hosting_role` IAM role
+- Domain `cyf.academy` verified in AWS SES (already configured)
 
 ## Environment Variables
 
@@ -28,15 +28,15 @@ PORT=3000
 
 ## Local Development
 
+**Note:** This app is designed to run on the Coolify EC2 instance which has the `hosting_role` IAM role with SES permissions. No AWS credentials are needed.
+
 1. Install dependencies:
    ```bash
    npm install
    ```
 
-2. Set environment variables (local development only - not needed in Coolify):
+2. Set environment variable:
    ```bash
-   export AWS_ACCESS_KEY_ID=your_key
-   export AWS_SECRET_ACCESS_KEY=your_secret
    export AWS_REGION=eu-west-1
    ```
 
@@ -51,9 +51,11 @@ PORT=3000
 
 1. Create a new application in Coolify
 2. Connect this Git repository
-3. Set the environment variables (AWS credentials)
-4. Set the domain to `test.cyf.academy` (or any subdomain)
+3. Set the environment variables:
+   - `PORT=3000`
 5. Deploy!
+
+**Note:** No AWS credentials needed! The EC2 instance already has the `hosting_role` IAM role with SES permissions.
 
 ## How It Works
 
@@ -64,16 +66,11 @@ PORT=3000
 
 ## Important Notes
 
-⚠️ **SES Sandbox Mode**: If your SES account is in sandbox mode, you can only send to verified email addresses. Make sure `alirezabg@gmail.com` is verified, or request production access.
+✅ **Domain Verified**: The domain `cyf.academy` is already verified in AWS SES (eu-west-1).
 
-⚠️ **Domain Verification**: The domain `cyf.academy` must be verified in AWS SES before you can send emails from it. The Terraform configuration should handle this automatically.
+✅ **IAM Role**: The Coolify EC2 instance has the `hosting_role` IAM role with permissions to send emails from `*@cyf.academy`.
 
-## API Endpoints
 
-- `GET /` - Serves the web interface
-- `POST /send-email` - Sends a test email
-- `GET /health` - Health check endpoint
+⚠️ **No Credentials Needed**: When deployed to Coolify, the app uses the EC2 instance IAM role automatically. 
 
-## License
 
-MIT
