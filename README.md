@@ -20,7 +20,6 @@ Simple Node.js web application to test sending emails from `info@cyf.academy` us
 Set these in Coolify when deploying:
 
 ```
-AWS_REGION=eu-west-1
 PORT=3000
 ```
 
